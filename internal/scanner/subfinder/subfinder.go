@@ -2,14 +2,16 @@ package subfinder
 
 import (
 	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/ayushkr12/spike/internal/pkg/utils"
 )
 
-func GetSubdomains(domain string) ([]string, error) {
+// GetSubdomains runs the subfinder command to find subdomains for a given domain.
+func GetSubdomains(domain string, Threads int) ([]string, error) {
 	var stdout strings.Builder // Create a new strings.Builder to capture the output
-	cmd := exec.Command("subfinder", "-d", domain, "-silent")
+	cmd := exec.Command("subfinder", "-d", domain, "-silent", "-t", strconv.Itoa(Threads), "-all")
 	cmd.Stdout = &stdout
 	if err := cmd.Run(); err != nil {
 		return nil, err

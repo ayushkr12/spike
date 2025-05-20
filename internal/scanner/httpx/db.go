@@ -28,3 +28,12 @@ func InsertLiveHost(db *db.DB, domainID int, liveHost string) error {
 	}
 	return nil
 }
+
+func InsertLiveHosts(db *db.DB, domainID int, liveHosts []string) error {
+	for _, liveHost := range liveHosts {
+		if err := InsertLiveHost(db, domainID, liveHost); err != nil {
+			return err
+		}
+	}
+	return nil
+}

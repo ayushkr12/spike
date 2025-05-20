@@ -28,3 +28,12 @@ func InsertSubdomain(db *db.DB, domainID int, subdomain string) error {
 	}
 	return nil
 }
+
+func InsertSubdomains(db *db.DB, domainID int, subdomains []string) error {
+	for _, subdomain := range subdomains {
+		if err := InsertSubdomain(db, domainID, subdomain); err != nil {
+			return err
+		}
+	}
+	return nil
+}
