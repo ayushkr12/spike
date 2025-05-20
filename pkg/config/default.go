@@ -12,6 +12,7 @@ func DefaultConfig() *Config {
 			Katana: KatanaConfig{
 				Threads:           10,
 				ParllelismThreads: 10,
+				Headless:          false,
 			},
 		},
 		Reporter: ReporterConfig{

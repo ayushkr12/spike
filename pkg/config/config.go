@@ -20,8 +20,9 @@ type SubfinderConfig struct {
 }
 
 type KatanaConfig struct {
-	Threads           int `yaml:"threads"`
-	ParllelismThreads int `yaml:"parallelism_threads"`
+	Threads           int  `yaml:"threads"`
+	ParllelismThreads int  `yaml:"parallelism_threads"`
+	Headless          bool `yaml:"headless"`
 }
 
 type ReporterConfig struct {
