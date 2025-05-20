@@ -1,5 +1,7 @@
 package utils
 
+import "strings"
+
 func RemoveDuplicatesAndEmptyStrings(slice []string) []string {
 	unique := make(map[string]struct{})
 	result := []string{}
@@ -14,4 +16,12 @@ func RemoveDuplicatesAndEmptyStrings(slice []string) []string {
 	}
 
 	return result
+}
+
+func JoinSlice(slice []string) string {
+	return strings.Join(slice, "\n")
+}
+
+func LinesToSlice(lines string) []string {
+	return strings.Split(strings.TrimSpace(lines), "\n")
 }

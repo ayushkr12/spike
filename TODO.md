@@ -1,1 +1,2 @@
-- [] write subfinder db manager
+- [x] write subfinder db manager
+- [ ] write `scanner/katana`

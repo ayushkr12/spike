@@ -2,12 +2,18 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
 type DB struct {
 	*sql.DB
+}
+
+func (db *DB) ExecInsert(query string, args ...any) error {
+	_, err := db.Exec(query, args...)
+	return err
 }
 
 func (db *DB) ExecStmt(stmt string) error {
@@ -23,6 +29,9 @@ func (db *DB) Connect(dbPath string) error {
 	db.DB, err = sql.Open("sqlite3", dbPath)
 	if err != nil {
 		return err
+	}
+	if err := db.ExecStmt("PRAGMA foreign_keys = ON;"); err != nil {
+		return fmt.Errorf("failed to enable foreign keys: %v", err)
 	}
 	return nil
 }
