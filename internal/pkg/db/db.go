@@ -11,11 +11,13 @@ type DB struct {
 	*sql.DB
 }
 
+// Exec executes an query with args without returning any rows.
 func (db *DB) ExecInsert(query string, args ...any) error {
 	_, err := db.Exec(query, args...)
 	return err
 }
 
+// ExecStmt executes a statement without returning any rows.
 func (db *DB) ExecStmt(stmt string) error {
 	_, err := db.Exec(stmt)
 	if err != nil {
@@ -24,6 +26,7 @@ func (db *DB) ExecStmt(stmt string) error {
 	return nil
 }
 
+// Connect opens a database connection to the specified path.
 func (db *DB) Connect(dbPath string) error {
 	var err error
 	db.DB, err = sql.Open("sqlite3", dbPath)
@@ -36,6 +39,7 @@ func (db *DB) Connect(dbPath string) error {
 	return nil
 }
 
+// Close closes the database connection.
 func (db *DB) Close() error {
 	if err := db.DB.Close(); err != nil {
 		return err

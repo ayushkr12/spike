@@ -10,6 +10,17 @@ import (
 	log "github.com/ayushkr12/logger"
 )
 
+func RunCommand(cmdName string, args []string) ([]string, error) {
+	var stdout bytes.Buffer
+	cmd := exec.Command(cmdName, args...)
+	cmd.Stdout = &stdout
+	if err := cmd.Run(); err != nil {
+		return nil, fmt.Errorf("failed to run command: %w", err)
+	}
+	lines := LinesToSlice(stdout.String())
+	return RemoveDuplicatesAndEmptyStrings(lines), nil
+}
+
 // RunCommandWithStdinInput runs a command with StdinInput piped to stdin,
 // and returns stdout lines with duplicates and empty lines removed.
 func RunCommandWithStdinInput(cmdName string, args []string, StdinInput []string) ([]string, error) {

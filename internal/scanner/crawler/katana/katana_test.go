@@ -13,6 +13,7 @@ func TestCrawlHosts(t *testing.T) {
 		ParllelismThreads: 10,
 		Headless:          false,
 		NoSandbox:         false,
+		MaxCrawlTime:      "10s",
 	}
 
 	urls, err := CrawlHosts(k)
