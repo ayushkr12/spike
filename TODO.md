@@ -1,4 +1,4 @@
 - [x] write subfinder db manager
 - [x] write ~~`scanner/katana`~~ `scanner/crawler/katana`
 - [x] write config
-- [ ] complete `scanner/crawler`
+- [x] complete `scanner/crawler`

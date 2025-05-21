@@ -2,21 +2,26 @@ package katana
 
 import (
 	"testing"
+
+	"github.com/ayushkr12/spike/pkg/config"
 )
 
 func TestCrawlHosts(t *testing.T) {
 	// Test with default values
-	k := &KatanaScanner{
-		LiveHosts:         []string{"https://example.com"},
-		CrawlDepth:        3,
-		Threads:           10,
-		ParllelismThreads: 10,
-		Headless:          false,
-		NoSandbox:         false,
-		MaxCrawlTime:      "10s",
+	k := &config.KatanaConfig{
+		CrawlDepth:         3,
+		Threads:            10,
+		ParallelismThreads: 10,
+		Headless:           false,
+		NoSandbox:          false,
+		MaxCrawlTime:       "10s",
 	}
 
-	urls, err := CrawlHosts(k)
+	liveHosts := []string{
+		"https://google.com",
+	}
+
+	urls, err := CrawlHosts(liveHosts, k)
 	if err != nil {
 		t.Fatalf("CrawlHosts() error = %v", err)
 	}

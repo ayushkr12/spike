@@ -8,7 +8,7 @@ type Config struct {
 type ToolsConfig struct {
 	HTTPX     HTTPXConfig     `yaml:"httpx"`
 	Subfinder SubfinderConfig `yaml:"subfinder"`
-	Katana    KatanaConfig    `yaml:"katana"`
+	Crawler   CrawlerConfig   `yaml:"crawler"`
 }
 
 type HTTPXConfig struct {
@@ -19,13 +19,24 @@ type SubfinderConfig struct {
 	Threads int `yaml:"threads"`
 }
 
+type CrawlerConfig struct {
+	Katana KatanaConfig `yaml:"katana"`
+	Gau    GauConfig    `yaml:"gau"`
+}
+
+type GauConfig struct {
+	Enabled bool `yaml:"enabled"`
+	Threads int  `yaml:"threads"`
+}
+
 type KatanaConfig struct {
-	Threads           int    `yaml:"threads"`
-	CrawlDepth        int    `yaml:"crawl_depth"`
-	MaxCrawlTime      string `yaml:"max_crawl_time"`
-	ParllelismThreads int    `yaml:"parallelism_threads"`
-	Headless          bool   `yaml:"headless"`
-	NoSandbox         bool   `yaml:"no_sandbox"`
+	Enabled            bool   `yaml:"enabled"`
+	Threads            int    `yaml:"threads"`
+	CrawlDepth         int    `yaml:"crawl_depth"`
+	MaxCrawlTime       string `yaml:"max_crawl_time"`
+	ParallelismThreads int    `yaml:"parallelism_threads"`
+	Headless           bool   `yaml:"headless"`
+	NoSandbox          bool   `yaml:"no_sandbox"`
 }
 
 type ReporterConfig struct {

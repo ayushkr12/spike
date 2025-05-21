@@ -9,13 +9,20 @@ func DefaultConfig() *Config {
 			Subfinder: SubfinderConfig{
 				Threads: 10,
 			},
-			Katana: KatanaConfig{
-				Threads:           10,
-				CrawlDepth:        3,
-				MaxCrawlTime:      "10m",
-				ParllelismThreads: 10,
-				Headless:          false,
-				NoSandbox:         false,
+			Crawler: CrawlerConfig{
+				Gau: GauConfig{
+					Enabled: true,
+					Threads: 10,
+				},
+				Katana: KatanaConfig{
+					Enabled:            true,
+					Threads:            10,
+					CrawlDepth:         3,
+					MaxCrawlTime:       "10m",
+					ParallelismThreads: 10,
+					Headless:           false,
+					NoSandbox:          false,
+				},
 			},
 		},
 		Reporter: ReporterConfig{

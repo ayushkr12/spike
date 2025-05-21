@@ -4,22 +4,13 @@ import (
 	"strconv"
 
 	"github.com/ayushkr12/spike/internal/pkg/utils"
+	"github.com/ayushkr12/spike/pkg/config"
 )
 
-type KatanaScanner struct {
-	LiveHosts         []string
-	CrawlDepth        int
-	MaxCrawlTime      string
-	Threads           int
-	ParllelismThreads int
-	Headless          bool
-	NoSandbox         bool
-}
-
-func CrawlHosts(k *KatanaScanner) ([]string, error) {
+func CrawlHosts(liveHosts []string, k *config.KatanaConfig) ([]string, error) {
 	katanaArgs := []string{"-silent", "-jc", "-kf", "-fx", "-xhr", "-jsl", "-aff",
 		"-c", strconv.Itoa(k.Threads),
-		"-p", strconv.Itoa(k.ParllelismThreads),
+		"-p", strconv.Itoa(k.ParallelismThreads),
 		"-d", strconv.Itoa(k.CrawlDepth),
 		"-ct", k.MaxCrawlTime,
 	}
@@ -30,5 +21,5 @@ func CrawlHosts(k *KatanaScanner) ([]string, error) {
 	if k.NoSandbox {
 		katanaArgs = append(katanaArgs, "-no-sandbox")
 	}
-	return utils.RunCommandWithStdinInput("katana", katanaArgs, k.LiveHosts)
+	return utils.RunCommandWithStdinInput("katana", katanaArgs, liveHosts)
 }
