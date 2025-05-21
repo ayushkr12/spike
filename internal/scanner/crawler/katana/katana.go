@@ -17,7 +17,7 @@ type KatanaScanner struct {
 }
 
 func CrawlHosts(k *KatanaScanner) ([]string, error) {
-	katanaArgs := []string{"-jc", "-kf", "-fx", "-xhr", "-jsl", "-aff",
+	katanaArgs := []string{"-silent", "-jc", "-kf", "-fx", "-xhr", "-jsl", "-aff",
 		"-c", strconv.Itoa(k.Threads),
 		"-p", strconv.Itoa(k.ParllelismThreads),
 		"-d", strconv.Itoa(k.CrawlDepth),
