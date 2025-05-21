@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os/exec"
 	"strings"
+
+	log "github.com/ayushkr12/logger"
 )
 
 // RunCommandWithStdinInput runs a command with StdinInput piped to stdin,
@@ -19,6 +21,8 @@ func RunCommandWithStdinInput(cmdName string, args []string, StdinInput []string
 	if err != nil {
 		return nil, fmt.Errorf("failed to get stdin: %w", err)
 	}
+
+	log.Debugf("Running command: %s", cmd.String())
 
 	if err := cmd.Start(); err != nil {
 		return nil, fmt.Errorf("failed to start command: %w", err)

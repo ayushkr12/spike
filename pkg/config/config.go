@@ -20,9 +20,12 @@ type SubfinderConfig struct {
 }
 
 type KatanaConfig struct {
-	Threads           int  `yaml:"threads"`
-	ParllelismThreads int  `yaml:"parallelism_threads"`
-	Headless          bool `yaml:"headless"`
+	Threads           int    `yaml:"threads"`
+	CrawlDepth        int    `yaml:"crawl_depth"`
+	MaxCrawlTime      string `yaml:"max_crawl_time"`
+	ParllelismThreads int    `yaml:"parallelism_threads"`
+	Headless          bool   `yaml:"headless"`
+	NoSandbox         bool   `yaml:"no_sandbox"`
 }
 
 type ReporterConfig struct {

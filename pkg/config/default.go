@@ -11,8 +11,11 @@ func DefaultConfig() *Config {
 			},
 			Katana: KatanaConfig{
 				Threads:           10,
+				CrawlDepth:        3,
+				MaxCrawlTime:      "10m",
 				ParllelismThreads: 10,
 				Headless:          false,
+				NoSandbox:         false,
 			},
 		},
 		Reporter: ReporterConfig{

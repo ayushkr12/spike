@@ -1,5 +1,14 @@
+github.com/ayushkr12/logger v0.0.0-20250521101823-2ff5452ccb0e h1:dk0QzJmi6JH4p2KfeDOtnRLQ/7omWcSjnALDn7W6WDc=
+github.com/ayushkr12/logger v0.0.0-20250521101823-2ff5452ccb0e/go.mod h1:fLHPFS08VKKyy1hYD9XvZxJkY6JHxS1hGTuvugUUDoQ=
+github.com/ayushkr12/logger v0.0.0-20250521103924-280967093e0b h1:jz1/KioQnrVj3j+ZBzCNwwjBaGAbH+iBCiqYmxe5Ni8=
+github.com/ayushkr12/logger v0.0.0-20250521103924-280967093e0b/go.mod h1:Ybgybsjze2U3Zoqs6CmIOg462jxKnoDeFSsHkQiNu5Y=
+github.com/ayushkr12/logger v1.0.0 h1:BzUSkvbdne0gqb99+kz36gG8MQT4W4fnF2d89rRD1Ts=
+github.com/ayushkr12/logger v1.0.0/go.mod h1:Ybgybsjze2U3Zoqs6CmIOg462jxKnoDeFSsHkQiNu5Y=
+github.com/ayushkr12/logger v1.0.1 h1:UwmsukuryxFqMxsW5/7SAOlTnwryxLlq6EAM54qgJkE=
+github.com/ayushkr12/logger v1.0.1/go.mod h1:Ybgybsjze2U3Zoqs6CmIOg462jxKnoDeFSsHkQiNu5Y=
 github.com/mattn/go-sqlite3 v1.14.28 h1:ThEiQrnbtumT+QMknw63Befp/ce/nUPgBPMlRFEum7A=
 github.com/mattn/go-sqlite3 v1.14.28/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
