@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	log "github.com/ayushkr12/logger"
 	"gopkg.in/yaml.v3"
 )
 
@@ -11,6 +12,15 @@ var Cfg *Config
 
 // LoadConfig loads config from given YAML file path
 func LoadConfig(path string) error {
+	_, err := os.Stat(path)
+	if err != nil && !os.IsNotExist(err) {
+		return fmt.Errorf("failed to check config file: %w", err)
+	} else if os.IsNotExist(err) {
+		log.Infof("Config file not found, creating default config at %s", path)
+		if err := SaveDefaultConfig(path); err != nil {
+			return fmt.Errorf("failed to create default config: %w", err)
+		}
+	}
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return fmt.Errorf("failed to read config: %w", err)
