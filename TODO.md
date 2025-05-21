@@ -2,3 +2,4 @@
 - [x] write ~~`scanner/katana`~~ `scanner/crawler/katana`
 - [x] write config
 - [x] complete `scanner/crawler`
+- [ ] write nuclei scanner
