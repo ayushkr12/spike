@@ -13,27 +13,32 @@ CREATE TABLE IF NOT EXISTS live_hosts (
 );
 `
 
-const SQL_INSERT_LIVE_HOSTS = `INSERT INTO live_hosts (domain_id, live_host) VALUES (?, ?);`
+const SQL_INSERT_LIVE_HOST = `INSERT INTO live_hosts (domain_id, live_host) VALUES (?, ?);`
 
-func CreateLiveHostsTable(db *db.DB) error {
-	if err := db.ExecStmt(SQL_CREATE_LIVE_HOSTS_TABLE); err != nil {
+func InsertLiveHosts(dbClient *db.DB, domainID int, liveHosts []string) error {
+	if len(liveHosts) == 0 {
+		return nil
+	}
+	// Prepare the SQL statement for bulk insert
+	argsList := db.MakeArgsList(domainID, liveHosts)
+
+	// Execute the bulk insert
+	if err := dbClient.ExecBulkInsert(SQL_INSERT_LIVE_HOST, argsList); err != nil {
 		return err
 	}
 	return nil
 }
 
 func InsertLiveHost(db *db.DB, domainID int, liveHost string) error {
-	if err := db.ExecInsert(SQL_INSERT_LIVE_HOSTS, domainID, liveHost); err != nil {
+	if err := db.ExecInsert(SQL_INSERT_LIVE_HOST, domainID, liveHost); err != nil {
 		return err
 	}
 	return nil
 }
 
-func InsertLiveHosts(db *db.DB, domainID int, liveHosts []string) error {
-	for _, liveHost := range liveHosts {
-		if err := InsertLiveHost(db, domainID, liveHost); err != nil {
-			return err
-		}
+func CreateLiveHostsTable(db *db.DB) error {
+	if err := db.ExecStmt(SQL_CREATE_LIVE_HOSTS_TABLE); err != nil {
+		return err
 	}
 	return nil
 }

@@ -11,6 +11,31 @@ type DB struct {
 	*sql.DB
 }
 
+// ExecBulkInsert runs a prepared, transactional bulk insert.
+// query: INSERT statement with placeholders.
+// argsList: each inner slice represents one row of arguments.
+func (db *DB) ExecBulkInsert(query string, argsList [][]any) error {
+	tx, err := db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	stmt, err := tx.Prepare(query)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	for _, args := range argsList {
+		if _, err := stmt.Exec(args...); err != nil {
+			return err
+		}
+	}
+
+	return tx.Commit()
+}
+
 // Exec executes an query with args without returning any rows.
 func (db *DB) ExecInsert(query string, args ...any) error {
 	_, err := db.Exec(query, args...)

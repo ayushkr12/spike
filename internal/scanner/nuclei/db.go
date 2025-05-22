@@ -16,11 +16,16 @@ CREATE TABLE IF NOT EXISTS nuclei (
 
 const SQL_INSERT_NUCLEI_REPORT = `INSERT INTO nuclei (domain_id, report) VALUES (?, ?);`
 
-func InsertReports(db *db.DB, domainID int, reports []string) error {
-	for _, report := range reports {
-		if err := InsertReport(db, domainID, report); err != nil {
-			return err
-		}
+func InsertReports(dbClient *db.DB, domainID int, reports []string) error {
+	if len(reports) == 0 {
+		return nil
+	}
+	// Prepare the SQL statement for bulk insert
+	argsList := db.MakeArgsList(domainID, reports)
+
+	// Execute the bulk insert
+	if err := dbClient.ExecBulkInsert(SQL_INSERT_NUCLEI_REPORT, argsList); err != nil {
+		return err
 	}
 	return nil
 }

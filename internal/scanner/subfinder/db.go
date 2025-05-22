@@ -13,27 +13,32 @@ CREATE TABLE IF NOT EXISTS subdomains (
 );
 `
 
-const SQL_INSERT_SUBDOMAINS = `INSERT INTO subdomains (domain_id, subdomain) VALUES (?, ?);`
+const SQL_INSERT_SUBDOMAIN = `INSERT INTO subdomains (domain_id, subdomain) VALUES (?, ?);`
 
-func CreateSubdomainsTable(db *db.DB) error {
-	if err := db.ExecStmt(SQL_CREATE_SUBDOMAINS_TABLE); err != nil {
+func InsertSubdomains(dbClient *db.DB, domainID int, subdomains []string) error {
+	if len(subdomains) == 0 {
+		return nil
+	}
+	// Prepare the SQL statement for bulk insert
+	argsList := db.MakeArgsList(domainID, subdomains)
+
+	// Execute the bulk insert
+	if err := dbClient.ExecBulkInsert(SQL_INSERT_SUBDOMAIN, argsList); err != nil {
 		return err
 	}
 	return nil
 }
 
 func InsertSubdomain(db *db.DB, domainID int, subdomain string) error {
-	if err := db.ExecInsert(SQL_INSERT_SUBDOMAINS, domainID, subdomain); err != nil {
+	if err := db.ExecInsert(SQL_INSERT_SUBDOMAIN, domainID, subdomain); err != nil {
 		return err
 	}
 	return nil
 }
 
-func InsertSubdomains(db *db.DB, domainID int, subdomains []string) error {
-	for _, subdomain := range subdomains {
-		if err := InsertSubdomain(db, domainID, subdomain); err != nil {
-			return err
-		}
+func CreateSubdomainsTable(db *db.DB) error {
+	if err := db.ExecStmt(SQL_CREATE_SUBDOMAINS_TABLE); err != nil {
+		return err
 	}
 	return nil
 }
