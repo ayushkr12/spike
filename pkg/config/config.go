@@ -26,11 +26,12 @@ type CrawlerConfig struct {
 }
 
 type NucleiConfig struct {
-	Enabled           bool                    `yaml:"enabled"`
-	Threads           int                     `yaml:"threads"`
-	TemplatePaths     NucleiTemplatePaths     `yaml:"template_paths"`
-	TemplateSettings  NucleiTemplateSettings  `yaml:"template_settings"`
-	CustomScanOptions NucleiCustomScanOptions `yaml:"custom_scan_options"`
+	Enabled             bool                      `yaml:"enabled"`
+	Threads             int                       `yaml:"threads"`
+	TemplatePaths       NucleiTemplatePaths       `yaml:"template_paths"`
+	TemplateSettings    NucleiTemplateSettings    `yaml:"template_settings"`
+	CustomScanOptions   NucleiCustomScanOptions   `yaml:"custom_scan_options"`
+	CustomScanTemplates NucleiCustomScanTemplates `yaml:"custom_scan_templates"`
 }
 
 type NucleiTemplatePaths struct {
@@ -47,6 +48,10 @@ type NucleiTemplateSettings struct {
 
 type NucleiCustomScanOptions struct {
 	DomXSS bool `yaml:"dom_xss"`
+}
+
+type NucleiCustomScanTemplates struct {
+	DomXSS string `yaml:"dom_xss"`
 }
 
 type GauConfig struct {

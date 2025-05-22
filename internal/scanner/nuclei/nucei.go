@@ -53,6 +53,7 @@ func buildNucleiArgs(cfg *config.NucleiConfig) ([]string, error) {
 		args = append(args, "-headless")
 	}
 	args = append(args, "-c", strconv.Itoa(cfg.Threads))
+	args = append(args, "-silent")
 
 	return args, nil
 }

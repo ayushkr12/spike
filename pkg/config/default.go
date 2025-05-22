@@ -50,6 +50,9 @@ func DefaultConfig() *Config {
 				CustomScanOptions: NucleiCustomScanOptions{
 					DomXSS: true,
 				},
+				CustomScanTemplates: NucleiCustomScanTemplates{
+					DomXSS: filepath.Join(HomeDir, "nuclei-templates/dast/vulnerabilities/xss/dom-xss.yaml"),
+				},
 			},
 		},
 		Reporter: ReporterConfig{

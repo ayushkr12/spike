@@ -12,12 +12,12 @@ var ErrConflictHeadlessAndDomXSS = errors.New("internal: headless and DOM XSS co
 
 func ValidateNucleiConfig(cfg *config.NucleiConfig) error {
 	if cfg.TemplateSettings.DefaultEnabled {
-		if err := validateTemplatePath(cfg.TemplatePaths.Default); err != nil {
+		if err := validateTemplatesPath(cfg.TemplatePaths.Default); err != nil {
 			return fmt.Errorf("invalid default template path: %v", err)
 		}
 	}
 	if cfg.TemplateSettings.CustomEnabled {
-		if err := validateTemplatePath(cfg.TemplatePaths.Custom); err != nil {
+		if err := validateTemplatesPath(cfg.TemplatePaths.Custom); err != nil {
 			return fmt.Errorf("invalid custom template path: %v", err)
 		}
 	}
@@ -27,12 +27,22 @@ func ValidateNucleiConfig(cfg *config.NucleiConfig) error {
 	return nil
 }
 
-func validateTemplatePath(path string) error {
+func validateTemplatesPath(path string) error {
 	if path == "" {
 		return fmt.Errorf("path cannot be empty")
 	}
 	if !utils.IsDirectory(path) {
 		return fmt.Errorf("%s is not a directory", path)
+	}
+	return nil
+}
+
+func validateTemplatePath(path string) error {
+	if path == "" {
+		return fmt.Errorf("path cannot be empty")
+	}
+	if !utils.IsFile(path) {
+		return fmt.Errorf("%s is not a file", path)
 	}
 	return nil
 }
