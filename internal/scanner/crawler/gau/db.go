@@ -4,7 +4,7 @@ import (
 	"github.com/ayushkr12/spike/internal/pkg/db"
 )
 
-var SQL_CREATE_GAU_TABLE = `
+const SQL_CREATE_GAU_TABLE = `
 CREATE TABLE IF NOT EXISTS gau (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	domain_id INTEGER NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS gau (
 );
 `
 
-var SQL_INSERT_GAU_URL = `INSERT INTO gau (domain_id, urls) VALUES (?, ?);`
+const SQL_INSERT_GAU_URL = `INSERT INTO gau (domain_id, urls) VALUES (?, ?);`
 
 func InsertURLs(db *db.DB, domainID int, urls []string) error {
 	for _, url := range urls {

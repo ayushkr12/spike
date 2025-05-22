@@ -4,7 +4,7 @@ import (
 	"github.com/ayushkr12/spike/internal/pkg/db"
 )
 
-var SQL_CREATE_SUBDOMAINS_TABLE = `
+const SQL_CREATE_SUBDOMAINS_TABLE = `
 CREATE TABLE IF NOT EXISTS subdomains (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	domain_id INTEGER NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS subdomains (
 );
 `
 
-var SQL_INSERT_SUBDOMAINS = `INSERT INTO subdomains (domain_id, subdomain) VALUES (?, ?);`
+const SQL_INSERT_SUBDOMAINS = `INSERT INTO subdomains (domain_id, subdomain) VALUES (?, ?);`
 
 func CreateSubdomainsTable(db *db.DB) error {
 	if err := db.ExecStmt(SQL_CREATE_SUBDOMAINS_TABLE); err != nil {

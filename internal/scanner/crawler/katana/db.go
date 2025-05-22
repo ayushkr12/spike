@@ -4,7 +4,7 @@ import (
 	"github.com/ayushkr12/spike/internal/pkg/db"
 )
 
-var SQL_CREATE_KATANA_TABLE = `
+const SQL_CREATE_KATANA_TABLE = `
 CREATE TABLE IF NOT EXISTS katana (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	domain_id INTEGER NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS katana (
 );
 `
 
-var SQL_INSERT_KATANA_URL = `INSERT INTO katana (domain_id, urls) VALUES (?, ?);`
+const SQL_INSERT_KATANA_URL = `INSERT INTO katana (domain_id, urls) VALUES (?, ?);`
 
 func InsertURLs(db *db.DB, domainID int, urls []string) error {
 	for _, url := range urls {
