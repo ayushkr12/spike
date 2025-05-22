@@ -1,4 +1,4 @@
-package crawler
+package core
 
 import (
 	"github.com/ayushkr12/spike/internal/pkg/db"
