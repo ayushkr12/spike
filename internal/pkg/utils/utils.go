@@ -1,6 +1,17 @@
 package utils
 
-import "strings"
+import (
+	"os"
+	"strings"
+)
+
+func IsDirectory(path string) bool {
+	fileInfo, err := os.Stat(path)
+	if err != nil {
+		return false
+	}
+	return fileInfo.IsDir()
+}
 
 func RemoveDuplicatesAndEmptyStrings(slice []string) []string {
 	unique := make(map[string]struct{})

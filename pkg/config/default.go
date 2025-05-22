@@ -1,6 +1,16 @@
 package config
 
+import (
+	"os"
+	"path/filepath"
+
+	log "github.com/ayushkr12/logger"
+)
+
+var HomeDir = os.Getenv("HOME")
+
 func DefaultConfig() *Config {
+	log.Debugf("Using $HOME directory as: %s", HomeDir)
 	return &Config{
 		ToolsConfig: ToolsConfig{
 			HTTPX: HTTPXConfig{
@@ -22,6 +32,23 @@ func DefaultConfig() *Config {
 					ParallelismThreads: 10,
 					Headless:           false,
 					NoSandbox:          false,
+				},
+			},
+			Nuclei: NucleiConfig{
+				Enabled: true,
+				Threads: 25,
+				TemplatePaths: NucleiTemplatePaths{
+					Default: filepath.Join(HomeDir, "nuclei-templates"),
+					Custom:  filepath.Join(HomeDir, "custom-nuclei-templates"),
+				},
+				TemplateSettings: NucleiTemplateSettings{
+					DefaultEnabled:  true,
+					CustomEnabled:   true,
+					DastEnabled:     true,
+					HeadlessEnabled: false,
+				},
+				CustomScanOptions: NucleiCustomScanOptions{
+					DomXSS: true,
 				},
 			},
 		},

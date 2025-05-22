@@ -9,6 +9,7 @@ type ToolsConfig struct {
 	HTTPX     HTTPXConfig     `yaml:"httpx"`
 	Subfinder SubfinderConfig `yaml:"subfinder"`
 	Crawler   CrawlerConfig   `yaml:"crawler"`
+	Nuclei    NucleiConfig    `yaml:"nuclei"`
 }
 
 type HTTPXConfig struct {
@@ -22,6 +23,30 @@ type SubfinderConfig struct {
 type CrawlerConfig struct {
 	Katana KatanaConfig `yaml:"katana"`
 	Gau    GauConfig    `yaml:"gau"`
+}
+
+type NucleiConfig struct {
+	Enabled           bool                    `yaml:"enabled"`
+	Threads           int                     `yaml:"threads"`
+	TemplatePaths     NucleiTemplatePaths     `yaml:"template_paths"`
+	TemplateSettings  NucleiTemplateSettings  `yaml:"template_settings"`
+	CustomScanOptions NucleiCustomScanOptions `yaml:"custom_scan_options"`
+}
+
+type NucleiTemplatePaths struct {
+	Default string `yaml:"default"`
+	Custom  string `yaml:"custom"`
+}
+
+type NucleiTemplateSettings struct {
+	DefaultEnabled  bool `yaml:"default_enabled"`
+	CustomEnabled   bool `yaml:"custom_enabled"`
+	DastEnabled     bool `yaml:"dast_enabled"`
+	HeadlessEnabled bool `yaml:"headless_enabled"`
+}
+
+type NucleiCustomScanOptions struct {
+	DomXSS bool `yaml:"dom_xss"`
 }
 
 type GauConfig struct {
