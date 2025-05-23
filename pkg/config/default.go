@@ -8,10 +8,16 @@ import (
 )
 
 var HomeDir = os.Getenv("HOME")
+var AppName = "spike"
 
 func DefaultConfig() *Config {
 	log.Debugf("Using $HOME directory as: %s", HomeDir)
 	return &Config{
+		AppConfig: AppConfig{
+			AppDir:            filepath.Join(HomeDir, AppName),
+			DefaultDBPath:     filepath.Join(HomeDir, AppName, "spike.db"),
+			DefaultConfigPath: filepath.Join(HomeDir, AppName, "config.yaml"),
+		},
 		ToolsConfig: ToolsConfig{
 			HTTPX: HTTPXConfig{
 				Threads: 50,

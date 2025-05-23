@@ -1,8 +1,15 @@
 package config
 
 type Config struct {
+	AppConfig   AppConfig      `yaml:"app"`
 	ToolsConfig ToolsConfig    `yaml:"tools"`
 	Reporter    ReporterConfig `yaml:"reporter"`
+}
+
+type AppConfig struct {
+	AppDir            string `yaml:"app_dir"`
+	DefaultDBPath     string `yaml:"default_db_path"`
+	DefaultConfigPath string `yaml:"default_config_path"`
 }
 
 type ToolsConfig struct {

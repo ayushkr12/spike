@@ -2,4 +2,10 @@
 - [x] write ~~`scanner/katana`~~ `scanner/crawler/katana`
 - [x] write config
 - [x] complete `scanner/crawler`
-- [ ] write nuclei scanner
+- [x] write nuclei scanner
+
+
+- [ ] write core scanner
+    - [ ] seperate subenum logic with core function
+    - [ ] seperate scanners running different indirect tools is not saved to db rn fixed that
+    - [ ] complete core scanner
